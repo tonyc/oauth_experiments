@@ -41,13 +41,9 @@ defmodule OauthExperiments.RefreshToken do
 
   @impl true
   def handle_info(:refresh_token, state) do
-    table = state.ets_table
-
-    IO.puts("refresh_token(), table: #{inspect(table)}")
-
     refresh_token = UUID.uuid4()
 
-    IO.puts "new token: #{inspect(refresh_token)}"
+    IO.puts "*** new token: #{inspect(refresh_token)}"
 
     :dets.insert(state.ets_table, {@token_key, refresh_token})
 
